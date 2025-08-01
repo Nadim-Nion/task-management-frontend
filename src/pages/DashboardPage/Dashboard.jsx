@@ -10,6 +10,7 @@ import {
   Trash2,
 } from "lucide-react";
 import taskAvatar from "../../assets/images/task-avatar.png";
+import { useNavigate } from "react-router";
 
 const Dashboard = () => {
   const [tasks, setTasks] = useState([]);
@@ -20,6 +21,8 @@ const Dashboard = () => {
   const [selectedStatus, setSelectedStatus] = useState("Pending");
   const [categoryDropdownOpen, setCategoryDropdownOpen] = useState(false);
   const [statusDropdownOpen, setStatusDropdownOpen] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchTasks = async () => {
@@ -223,6 +226,7 @@ const Dashboard = () => {
             {tasks?.map((task) => (
               <div
                 key={task._id}
+                onClick={() => navigate(`/tasks/${task._id}`)}
                 className="bg-white border border-gray-200 rounded-xl p-4 sm:p-6 hover:shadow-lg transition-shadow relative group"
               >
                 {/* Delete Button */}
